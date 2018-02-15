@@ -32,4 +32,11 @@ class Admin::EventsController < ApplicationController
     flash.notice = 'Event was successfully updated.'
     redirect_to admin_event_path(@event)
   end
+  
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash.notice = "Event was successfully destroyed"
+    redirect_to admin_events_path
+  end
 end
