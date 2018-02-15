@@ -17,6 +17,7 @@ class Admin::EventsController < ApplicationController
     event_params = params.require(:event).permit(:title, :location, :start_at, :ticket_price, :ticket_quantity, :event_category_id)
     @event = Event.new(event_params)
     @event.save
-    redirect_to admin_event_path(@event), notice: 'Event was successfully created.'
+    flash.notice = 'Event was successfully created.'
+    redirect_to admin_event_path(@event)
   end
 end
