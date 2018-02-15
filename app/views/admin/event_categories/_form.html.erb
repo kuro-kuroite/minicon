@@ -1,16 +1,6 @@
 <%= form_with(model: [:admin, event_category], local: true) do |form| %>
-  <% if event_category.errors.any? %>
-    <div id="error-explanation">
-      <div class="message message-alert">
-        The form contains <%= pluralize(event_category.errors.count, "error") %>:
-      </div>
-      <ul>
-      <% event_category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+  <%= render 'admin/shared/form_errors', entity: event_category %>
   
   <div class="field">
     <%= form.label :name %>

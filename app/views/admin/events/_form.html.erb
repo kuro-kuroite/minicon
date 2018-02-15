@@ -1,4 +1,6 @@
 <%= form_with(model: [:admin, event], local: true) do |form| %>
+
+  <%= render 'admin/shared/form_errors', entity: event %>
   
   <div class="field">
     <%= form.label :event_category_id %>

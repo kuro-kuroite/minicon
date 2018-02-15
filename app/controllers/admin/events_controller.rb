@@ -17,18 +17,24 @@ class Admin::EventsController < ApplicationController
   
   def create
     @event = Event.new(event_params)
-    @event.save
-    flash.notice = 'Event was successfully created.'
-    redirect_to admin_event_path(@event)
+    if @event.save
+      redirect_to admin_event_path(@event), notice: 'Event was successfully created.'
+    else
+      flash.now['alert'] = 'Event could not be created'
+      render :new
+    end
   end
   
   def edit
   end
   
   def update
-    @event.update(event_params)
-    flash.notice = 'Event was successfully updated.'
-    redirect_to admin_event_path(@event)
+    if @event.update(event_params)
+      redirect_to admin_event_path(@event), notice: 'Event was successfully updated.'
+    else
+      flash.now[:alert] = 'Event could not be updated'
+      render :edit
+    end
   end
   
   def destroy
