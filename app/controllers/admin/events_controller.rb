@@ -20,4 +20,16 @@ class Admin::EventsController < ApplicationController
     flash.notice = 'Event was successfully created.'
     redirect_to admin_event_path(@event)
   end
+  
+  def edit
+    @event = Event.find(params[:id])
+  end
+  
+  def update
+    @event = Event.find(params[:id])
+    event_params = params.require(:event).permit(:title, :location, :start_at, :ticket_price, :ticket_quantity, :event_category_id)
+    @event.update(event_params)
+    flash.notice = 'Event was successfully updated.'
+    redirect_to admin_event_path(@event)
+  end
 end
